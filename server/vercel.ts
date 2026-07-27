@@ -1,25 +1,20 @@
-import { count } from 'drizzle-orm'
-import { migrate } from 'drizzle-orm/libsql/migrator'
 import { handle } from 'hono/vercel'
+import { join } from 'node:path'
 import { createApp } from './app'
 import { createDatabase } from './db/client'
-import { seedDatabase } from './db/seed'
-import { stores } from './db/schema'
+import { prepareDeploymentDatabase } from './db/deployment'
 
-const databaseUrl = process.env.DATABASE_URL || 'file:/tmp/meituan-trial-demo.db'
+const databaseUrl = prepareDeploymentDatabase({
+  configuredUrl: process.env.DATABASE_URL,
+  seedPath: join(process.cwd(), 'server/assets/deploy-seed.sqlite'),
+  runtimePath: '/tmp/meituan-trial-demo.db',
+})
 const database = createDatabase(databaseUrl, process.env.DATABASE_AUTH_TOKEN)
-
-const ready = (async () => {
-  await migrate(database.db, { migrationsFolder: './drizzle' })
-  const [{ value: storeCount }] = await database.db.select({ value: count() }).from(stores)
-  if (storeCount === 0) await seedDatabase(database.db)
-})()
 
 const app = createApp(database.db)
 const honoHandler = handle(app)
 
 async function handler(request: Request) {
-  await ready
   const incomingUrl = new URL(request.url)
   const route = incomingUrl.searchParams.get('__route')
   if (!route) return honoHandler(request)

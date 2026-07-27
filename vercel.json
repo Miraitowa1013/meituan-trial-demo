@@ -10,7 +10,7 @@
   ],
   "functions": {
     "api/index.js": {
-      "includeFiles": "drizzle/**"
+      "includeFiles": "server/assets/deploy-seed.sqlite"
     }
   }
 }

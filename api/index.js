@@ -5,9 +5,8 @@ var __export = (target, all) => {
 };
 
 // server/vercel.ts
-import { count } from "drizzle-orm";
-import { migrate } from "drizzle-orm/libsql/migrator";
 import { handle } from "hono/vercel";
+import { join } from "node:path";
 
 // server/app.ts
 import { sql as sql2 } from "drizzle-orm";
@@ -865,8 +864,8 @@ function createStoreService(db) {
       if (query.sort === "price") items = items.sort((a, b) => a.averagePrice - b.averagePrice);
       if (query.sort === "distance") items = items.sort((a, b) => a.distanceMeters - b.distanceMeters);
       if (query.sort === "evidence") items = items.sort((a, b) => {
-        const count2 = (storeId) => allEvidence.filter((evidence) => evidence.storeId === storeId).reduce((sum, evidence) => sum + evidence.positiveCount + evidence.neutralCount + evidence.negativeCount, 0);
-        return count2(b.id) - count2(a.id);
+        const count = (storeId) => allEvidence.filter((evidence) => evidence.storeId === storeId).reduce((sum, evidence) => sum + evidence.positiveCount + evidence.neutralCount + evidence.negativeCount, 0);
+        return count(b.id) - count(a.id);
       });
       return { items, facets: { categories }, total: items.length, dataNotice: "\u5E97\u94FA\u4E0E\u4E1A\u52A1\u6307\u6807\u4E3A\u533F\u540D\u6C99\u76D2\u6570\u636E" };
     },
@@ -1731,81 +1730,24 @@ function createDatabase(url, authToken) {
   };
 }
 
-// server/db/seed.ts
-import { eq as eq7 } from "drizzle-orm";
-async function seedDatabase(db) {
-  const updatedAt = /* @__PURE__ */ new Date("2026-07-22T12:40:00+08:00");
-  await db.transaction(async (transaction) => {
-    for (const store of seedStores) {
-      await transaction.insert(stores).values({
-        id: store.id,
-        slug: store.slug,
-        name: store.name,
-        category: store.category,
-        heroDish: store.heroDish,
-        heroImage: store.heroImage,
-        distanceMeters: store.distanceMeters,
-        deliveryMinutes: store.deliveryMinutes,
-        averagePrice: store.averagePrice,
-        evidenceState: store.evidenceState,
-        depth: store.depth,
-        sandbox: true
-      }).onConflictDoUpdate({
-        target: stores.id,
-        set: {
-          name: store.name,
-          category: store.category,
-          heroDish: store.heroDish,
-          heroImage: store.heroImage,
-          distanceMeters: store.distanceMeters,
-          deliveryMinutes: store.deliveryMinutes,
-          averagePrice: store.averagePrice,
-          evidenceState: store.evidenceState,
-          depth: store.depth
-        }
-      });
-      const existingPlans = await transaction.select({ id: trialPlans.id }).from(trialPlans).where(eq7(trialPlans.storeId, store.id));
-      for (const plan of existingPlans) {
-        await transaction.delete(trialPlanClaims).where(eq7(trialPlanClaims.planId, plan.id));
-      }
-      await transaction.delete(trialPlans).where(eq7(trialPlans.storeId, store.id));
-      await transaction.delete(menuItems).where(eq7(menuItems.storeId, store.id));
-      await transaction.delete(evidenceAggregates).where(eq7(evidenceAggregates.storeId, store.id));
-      await transaction.delete(evidenceRecords).where(eq7(evidenceRecords.storeId, store.id));
-      await transaction.insert(menuItems).values(store.menu.map((item) => ({ ...item, storeId: store.id })));
-      await transaction.insert(trialPlans).values({ ...store.trialPlan, storeId: store.id });
-      await transaction.insert(trialPlanClaims).values(store.trialPlanClaims.map((claim) => ({
-        ...claim,
-        planId: store.trialPlan.id
-      })));
-      await transaction.insert(evidenceAggregates).values(store.evidence.map((item) => ({
-        ...item,
-        storeId: store.id,
-        updatedAt
-      })));
-      if (store.evidenceRecords.length) {
-        await transaction.insert(evidenceRecords).values(store.evidenceRecords.map((item) => ({
-          ...item,
-          storeId: store.id,
-          sandbox: true
-        })));
-      }
-    }
-  });
+// server/db/deployment.ts
+import { copyFileSync, existsSync } from "node:fs";
+function prepareDeploymentDatabase(options) {
+  if (options.configuredUrl) return options.configuredUrl;
+  if (!existsSync(options.runtimePath)) copyFileSync(options.seedPath, options.runtimePath);
+  return `file:${options.runtimePath}`;
 }
 
 // server/vercel.ts
-var databaseUrl = process.env.DATABASE_URL || "file:/tmp/meituan-trial-demo.db";
+var databaseUrl = prepareDeploymentDatabase({
+  configuredUrl: process.env.DATABASE_URL,
+  seedPath: join(process.cwd(), "server/assets/deploy-seed.sqlite"),
+  runtimePath: "/tmp/meituan-trial-demo.db"
+});
 var database = createDatabase(databaseUrl, process.env.DATABASE_AUTH_TOKEN);
-var ready = (async () => {
-  await migrate(database.db, { migrationsFolder: "./drizzle" });
-  const [{ value: storeCount }] = await database.db.select({ value: count() }).from(stores);
-  if (storeCount === 0) await seedDatabase(database.db);
-})();
 var app = createApp(database.db);
 var honoHandler = handle(app);
 async function handler(request) {
-  await ready;
   const incomingUrl = new URL(request.url);
   const route = incomingUrl.searchParams.get("__route");
   if (!route) return honoHandler(request);
