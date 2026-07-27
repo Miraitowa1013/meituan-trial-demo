@@ -20,7 +20,13 @@ const honoHandler = handle(app)
 
 async function handler(request: Request) {
   await ready
-  return honoHandler(request)
+  const incomingUrl = new URL(request.url)
+  const route = incomingUrl.searchParams.get('__route')
+  if (!route) return honoHandler(request)
+
+  incomingUrl.pathname = `/api/${route}`
+  incomingUrl.searchParams.delete('__route')
+  return honoHandler(new Request(incomingUrl, request))
 }
 
 export const GET = handler
