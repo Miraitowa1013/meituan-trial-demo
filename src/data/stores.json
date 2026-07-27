@@ -1,0 +1,62 @@
+[
+  {
+    "id": "store-beef-01",
+    "name": "巷口牛肉饭",
+    "category": "牛肉饭",
+    "heroDish": "招牌现切牛肉饭",
+    "price": 23.9,
+    "distanceMeters": 680,
+    "openedDaysAgo": 19,
+    "tags": ["可少油", "汤饭分装", "工作日午餐"],
+    "promises": ["separated_packaging", "low_oil", "standard_protein"],
+    "isDemoData": true
+  },
+  {
+    "id": "store-beef-02",
+    "name": "老灶牛肉盖饭",
+    "category": "牛肉饭",
+    "heroDish": "黑椒牛肉盖饭",
+    "price": 25,
+    "distanceMeters": 920,
+    "openedDaysAgo": 43,
+    "tags": ["分量足", "口味浓", "验证较多"],
+    "promises": ["standard_protein"],
+    "isDemoData": true
+  },
+  {
+    "id": "store-chicken-01",
+    "name": "禾味鸡汤饭",
+    "category": "鸡汤饭",
+    "heroDish": "菌菇鸡汤饭",
+    "price": 22.8,
+    "distanceMeters": 760,
+    "openedDaysAgo": 31,
+    "tags": ["口味清淡", "汤饭分装", "品类替代"],
+    "promises": ["separated_packaging", "low_oil"],
+    "isDemoData": true
+  },
+  {
+    "id": "store-pork-01",
+    "name": "小满烧肉饭",
+    "category": "烧肉饭",
+    "heroDish": "炭香烧肉饭",
+    "price": 24.8,
+    "distanceMeters": 1100,
+    "openedDaysAgo": 12,
+    "tags": ["新店", "酱汁另放", "偏浓口"],
+    "promises": ["separated_packaging"],
+    "isDemoData": true
+  },
+  {
+    "id": "store-veggie-01",
+    "name": "青禾轻食碗",
+    "category": "轻食",
+    "heroDish": "谷饲牛肉能量碗",
+    "price": 26.8,
+    "distanceMeters": 540,
+    "openedDaysAgo": 27,
+    "tags": ["少油", "蔬菜丰富", "预算略高"],
+    "promises": ["low_oil", "standard_protein"],
+    "isDemoData": true
+  }
+]

@@ -1,0 +1,50 @@
+.recommendations-page { width:min(100%,860px); min-height:100vh; margin:0 auto; padding:20px clamp(16px,5vw,46px) 110px; color:#171816; background:#f7f4ec; }
+.recommendations-header { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:13px; padding-bottom:17px; border-bottom:1px solid rgba(23,24,22,.12); }
+.recommendations-header > button { min-height:38px; border:0; border-radius:12px; padding:0 12px; background:#fff; font-weight:800; cursor:pointer; }
+.recommendations-header > button:first-child { width:40px; padding:0; font-size:26px; }
+.recommendations-header span { color:#7d786d; font-size:10px; font-weight:800; }
+.recommendations-header h1 { margin:2px 0 0; font-size:20px; letter-spacing:-.03em; }
+.recommendations-summary { display:flex; gap:8px; overflow:auto; padding:20px 0 8px; scrollbar-width:none; }
+.recommendations-summary span { flex:0 0 auto; padding:8px 11px; border-radius:999px; color:#514b40; background:#fff; font-size:11px; font-weight:800; }
+.recommendations-summary .is-proof { color:#07563f; background:#dff2e8; }
+.recommendations-principle { position:relative; overflow:hidden; margin:16px 0 22px; padding:20px; border-radius:19px; color:#fff; background:#171816; }
+.recommendations-principle::after { display:none; }
+.recommendations-principle b { position:relative; z-index:1; color:#ffd100; font-size:20px; }
+.recommendations-principle p { position:relative; z-index:1; margin:6px 0 0; color:#bbb7ad; font-size:12px; }
+.recommendations-list { display:grid; gap:17px; }
+.recommendation-card { overflow:hidden; border:1px solid var(--color-line); border-radius:var(--radius-card); background:#fff; box-shadow:var(--shadow-card); }
+.recommendation-card--primary { border:2px solid #e6be00; box-shadow:0 14px 34px rgba(97,78,0,.11); }
+.recommendation-card > header { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 17px; color:#fff; background:#242520; }
+.recommendation-card--primary > header { color:#171816; background:#ffd100; }
+.recommendation-card > header span { padding:4px 7px; border:1px solid currentColor; border-radius:7px; font-size:10px; font-weight:900; }
+.recommendation-card > header small { font-weight:800; }
+.recommendation-card__store { display:grid; grid-template-columns:92px 1fr; gap:14px; padding:18px 18px 12px; }
+.recommendation-card__store > div { position:relative; display:grid; place-items:center; min-height:92px; overflow:hidden; border-radius:17px; background:linear-gradient(145deg,#a94a27,#f2b64e); }
+.recommendation-card__store > div::before { content:''; width:58px; height:58px; border:7px solid #fff8e3; border-radius:50%; background:#fff; box-shadow:0 11px 20px rgba(55,24,9,.22); }
+.recommendation-card__store > div b { position:absolute; color:#a44325; font-size:28px; }
+.recommendation-card__store > div i { position:absolute; inset:auto -20px 15px; height:1px; background:rgba(255,255,255,.55); transform:rotate(-10deg); }
+.recommendation-card__store h2 { margin:2px 0 4px; font-size:21px; letter-spacing:-.03em; }
+.recommendation-card__store p { margin:0; color:#79746a; font-size:11px; }
+.recommendation-card__store strong { display:block; margin-top:12px; color:#e14b2d; font-size:21px; }
+.recommendation-card__store strong small { font-size:10px; }
+.recommendation-card__tradeoff { margin:2px 18px 12px; padding:13px; border-radius:13px; background:#f2f0e9; }
+.recommendation-card__tradeoff span,.recommendation-card__tradeoff b { display:block; }
+.recommendation-card__tradeoff span { color:#8a857b; font-size:9px; font-weight:800; letter-spacing:.08em; }
+.recommendation-card__tradeoff b { margin-top:4px; font-size:13px; }
+.recommendation-card__reasons { display:grid; gap:8px; margin:0; padding:0 18px; list-style:none; }
+.recommendation-card__reasons li { display:flex; gap:9px; align-items:flex-start; font-size:12px; }
+.recommendation-card__reasons i { display:grid; flex:0 0 19px; place-items:center; height:19px; border-radius:50%; color:#fff; background:#0e6b4f; font-size:10px; font-style:normal; }
+.recommendation-card__risk { display:grid; grid-template-columns:auto 1fr; gap:9px; margin:14px 18px; padding:10px 12px; border-radius:12px; color:#8d4e10; background:#fff0df; }
+.recommendation-card__risk span { font-size:10px; font-weight:900; }
+.recommendation-card__risk p { margin:0; font-size:11px; }
+.recommendation-card footer { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px 18px; border-top:1px solid rgba(23,24,22,.1); }
+.recommendation-card footer span { color:#777268; font-size:10px; }
+.recommendation-card footer span b { color:#171816; font-size:16px; }
+.recommendation-card footer a { padding:11px 14px; border-radius:12px; color:#171816; background:#ffd100; text-decoration:none; font-size:12px; font-weight:900; }
+.recommendations-loading { display:grid; gap:14px; }
+.recommendations-loading i { height:260px; border-radius:23px; background:linear-gradient(100deg,#ebe6da 20%,#fff 45%,#ebe6da 70%); background-size:300% 100%; animation:shimmer 1.4s infinite; }
+.recommendations-error,.recommendations-page--empty { display:grid; place-content:center; min-height:70vh; text-align:center; }
+.recommendations-error button,.recommendations-page--empty button { min-height:44px; border:0; border-radius:12px; background:#ffd100; font-weight:900; }
+.recommendations-notice { color:#8b867b; text-align:center; font-size:10px; }
+@media(min-width:760px){.recommendations-list{grid-template-columns:1.2fr .8fr}.recommendation-card--primary{grid-row:span 2}.recommendation-card:not(.recommendation-card--primary) .recommendation-card__reasons li:nth-child(n+2){display:none}}
+@media(max-width:520px){.recommendations-page{padding-top:14px}.recommendations-header>button:last-child{font-size:11px}.recommendation-card__store{grid-template-columns:82px 1fr}.recommendation-card footer{align-items:flex-end}.recommendation-card footer a{white-space:nowrap}}

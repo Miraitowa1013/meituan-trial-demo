@@ -1,0 +1,12 @@
+node_modules
+dist
+test-results
+playwright-report
+artifacts
+recording
+docs
+.gstack
+.superpowers
+*.log
+data/*.db
+data/*.db-*

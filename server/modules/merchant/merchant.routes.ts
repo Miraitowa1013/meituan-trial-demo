@@ -1,0 +1,3 @@
+import {Hono} from'hono'
+import{MerchantStoreNotFoundError,MerchantUnauthorizedError,type MerchantService}from'./merchant.service'
+export function createMerchantRoutes(service:MerchantService){return new Hono().get('/stores/:storeId/overview',async(context)=>context.json(await service.overview(context.req.header('x-demo-session'),context.req.param('storeId')))).onError((error,context)=>{if(error instanceof MerchantUnauthorizedError)return context.json({code:'DEMO_SESSION_REQUIRED'},401);if(error instanceof MerchantStoreNotFoundError)return context.json({code:'STORE_NOT_FOUND'},404);throw error})}

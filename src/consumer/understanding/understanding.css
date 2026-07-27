@@ -1,0 +1,45 @@
+.understanding-page { width:min(100%,760px); min-height:100vh; margin:0 auto; padding:22px clamp(18px,5vw,46px) 110px; color:#171816; background:#f7f4ec; }
+.understanding-header { display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:13px; padding-bottom:18px; border-bottom:1px solid rgba(23,24,22,.12); }
+.understanding-header button { width:40px; height:40px; border:0; border-radius:13px; background:#fff; font-size:26px; cursor:pointer; }
+.understanding-header div span,.understanding-header div b { display:block; }
+.understanding-header div span { color:#8b867b; font-size:10px; font-weight:800; letter-spacing:.12em; }
+.understanding-header div b { margin-top:3px; font-size:15px; }
+.understanding-header > small { padding:6px 9px; border-radius:999px; color:#6c5200; background:#fff1a8; font-weight:800; }
+.understanding-quote { padding:42px 0 24px; }
+.understanding-quote span { color:#0e6b4f; font-size:12px; font-weight:900; }
+.understanding-quote h1 { max-width:650px; margin:9px 0 0; font-size:clamp(31px,6vw,54px); line-height:1.15; letter-spacing:-.05em; }
+.understanding-progress,.understanding-error { display:grid; gap:10px; padding:20px; border-radius:20px; color:#fff; background:#171816; }
+.understanding-progress span { padding:11px 13px; border-left:3px solid #ffd100; opacity:.42; animation:understanding-step .45s ease forwards; animation-delay:calc(var(--step) * .28s); }
+.understanding-progress button,.understanding-error button { justify-self:start; border:0; color:#ffd100; background:transparent; cursor:pointer; }
+.understanding-result,.semantic-translation,.understanding-control { margin-top:18px; padding:22px; border:1px solid rgba(23,24,22,.12); border-radius:22px; background:#fff; box-shadow:0 15px 40px rgba(42,35,20,.07); }
+.understanding-result > header,.semantic-translation > header,.understanding-control > div { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.understanding-result header span,.semantic-translation header span { font-size:12px; font-weight:900; }
+.understanding-result header small { color:#777268; }
+.understanding-tags { display:flex; flex-wrap:wrap; gap:9px; margin-top:16px; }
+.understanding-tags button { display:flex; gap:9px; align-items:center; min-height:38px; padding:7px 11px; border:0; border-radius:999px; color:#084f3b; background:#e1f2e9; font-weight:800; cursor:pointer; }
+.understanding-tags button:first-child { color:#5f4a00; background:#fff3bd; }
+.understanding-tags i { color:#777268; font-size:10px; font-style:normal; font-weight:700; }
+.semantic-translation { border-color:#e3bd00; background:#fff9da; }
+.semantic-translation header { align-items:flex-start; }
+.semantic-translation header span { padding:5px 8px; border-radius:7px; color:#171816; background:#ffd100; white-space:nowrap; }
+.semantic-translation header b { text-align:right; font-size:13px; }
+.semantic-translation > div { display:grid; grid-template-columns:1fr auto 1.35fr; align-items:center; gap:13px; margin:18px 0; }
+.semantic-translation p { min-height:83px; margin:0; padding:13px; border-radius:15px; background:#fff; }
+.semantic-translation p small,.semantic-translation p strong { display:block; }
+.semantic-translation p small { color:#8b867b; font-size:10px; }
+.semantic-translation p strong { margin-top:7px; font-size:15px; }
+.semantic-translation > div > i { font-style:normal; font-size:25px; font-weight:900; }
+.semantic-translation footer { color:#766927; font-size:11px; }
+.understanding-control { position:relative; overflow:hidden; color:#fff; background:#171816; }
+.understanding-control::after { content:'证'; position:absolute; right:-10px; bottom:-44px; color:rgba(255,209,0,.09); font-size:130px; font-weight:900; pointer-events:none; }
+.understanding-control > div span,.understanding-control > div b { display:block; position:relative; z-index:1; }
+.understanding-control > div span { color:#aaa69c; font-size:11px; }
+.understanding-control > div b { color:#ffd100; font-size:19px; }
+.understanding-control > button { position:relative; z-index:1; width:100%; min-height:52px; margin-top:18px; border:0; border-radius:15px; color:#171816; background:#ffd100; font-weight:900; cursor:pointer; }
+.understanding-control > small { position:relative; z-index:1; display:block; margin-top:11px; color:#aaa69c; text-align:center; font-size:10px; }
+.understanding-page--empty { display:grid; place-content:center; text-align:center; }
+.understanding-page--empty button { min-height:46px; border:0; border-radius:14px; background:#ffd100; font-weight:900; }
+@keyframes understanding-step { to { opacity:1; transform:translateX(5px); } }
+@media(max-width:920px){.understanding-page{width:min(100%,680px)}.understanding-quote h1{font-size:clamp(31px,5vw,46px)}}
+@media(max-width:520px){.understanding-page{padding-top:16px}.understanding-quote{padding-top:30px}.semantic-translation>div{grid-template-columns:1fr}.semantic-translation>div>i{transform:rotate(90deg);text-align:center}.semantic-translation header{display:block}.semantic-translation header b{display:block;margin-top:8px;text-align:left}}
+@media(prefers-reduced-motion:reduce){.understanding-progress span{animation:none;opacity:1}}

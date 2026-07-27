@@ -1,0 +1,93 @@
+.meituan-entry {
+  width: min(100%, 430px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 18px 16px 42px;
+  color: #171713;
+  background:
+    radial-gradient(circle at 86% 4%, rgb(255 209 0 / 30%), transparent 25%),
+    linear-gradient(#fffaf0 0 190px, #f5f5f3 310px);
+}
+
+.meituan-entry__header,
+.meituan-entry__header > div,
+.meituan-entry__feed header > div,
+.meituan-entry__store > div:last-child > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.meituan-entry__header h1 {
+  margin: 3px 0 0;
+  font: 900 24px/1 var(--font-body);
+  letter-spacing: -.04em;
+}
+
+.meituan-entry__location { color: #6e6a61; font-size: 12px; font-weight: 700; }
+.meituan-entry__header button { width: 38px; height: 38px; border: 0; border-radius: 50%; background: rgb(255 255 255 / 74%); font-weight: 900; }
+
+.meituan-entry__search {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 9px;
+  height: 48px;
+  margin: 20px 0 18px;
+  padding: 4px 5px 4px 15px;
+  border: 2px solid #ffd100;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgb(99 76 0 / 9%);
+}
+
+.meituan-entry__search input { min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; }
+.meituan-entry__search b { padding: 10px 17px; border-radius: 20px; background: #ffd100; font-size: 13px; }
+
+.meituan-entry__services { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+.meituan-entry__services button,
+.meituan-entry__trial-service { position: relative; display: grid; place-items: center; gap: 6px; border: 0; color: inherit; background: transparent; text-decoration: none; font-size: 12px; }
+.meituan-entry__services i { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 17px; color: #fff; background: #f89a37; box-shadow: inset 0 -7px 14px rgb(100 50 0 / 13%); font-style: normal; font-weight: 900; }
+.meituan-entry__services i[data-tone="red"] { background: #fb635e; }
+.meituan-entry__services i[data-tone="blue"] { background: #5aa9ff; }
+.meituan-entry__services i[data-tone="violet"] { background: #9a7beb; }
+.meituan-entry__trial-service i { color: #15140f; background: #ffd100; outline: 4px solid rgb(255 209 0 / 18%); }
+.meituan-entry__trial-service small { position: absolute; top: -7px; right: -7px; padding: 2px 5px; border-radius: 6px 6px 6px 1px; color: #fff; background: #191813; font-size: 8px; font-weight: 800; white-space: nowrap; }
+
+.meituan-entry__trial-banner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 12px;
+  overflow: hidden;
+  margin: 24px 0;
+  padding: 22px 20px;
+  border-radius: 22px;
+  color: #19170f;
+  background: #ffd100;
+  box-shadow: 0 15px 34px rgb(117 85 0 / 18%);
+  text-decoration: none;
+}
+
+.meituan-entry__trial-banner::after { content: ""; position: absolute; right: -34px; top: -44px; width: 145px; height: 145px; border: 28px solid rgb(255 255 255 / 35%); border-radius: 50%; }
+.meituan-entry__trial-banner > * { position: relative; z-index: 1; }
+.meituan-entry__trial-banner span { font-size: 10px; font-weight: 900; letter-spacing: .15em; }
+.meituan-entry__trial-banner h2 { margin: 8px 0 6px; font-size: 24px; line-height: 1.16; letter-spacing: -.04em; }
+.meituan-entry__trial-banner p { margin: 0; font-size: 11px; font-weight: 700; }
+.meituan-entry__trial-banner strong { padding: 10px 12px; border-radius: 14px; background: #191813; color: #fff; font-size: 12px; white-space: nowrap; }
+.meituan-entry__trial-banner strong b { color: #ffd100; }
+
+.meituan-entry__feed { padding: 18px 15px; border-radius: 22px; background: #fff; box-shadow: 0 12px 36px rgb(38 34 20 / 8%); }
+.meituan-entry__feed header h2 { margin: 0; font-size: 19px; }
+.meituan-entry__feed header span { color: #757167; font-size: 11px; }
+.meituan-entry__feed header p { margin: 5px 0 15px; color: #8b867b; font-size: 11px; }
+.meituan-entry__store { display: grid; grid-template-columns: 92px 1fr; gap: 13px; color: inherit; text-decoration: none; }
+.meituan-entry__store-cover { position: relative; display: grid; place-items: center; min-height: 94px; border-radius: 15px; background: linear-gradient(145deg, #9e4023, #efac42); }
+.meituan-entry__store-cover b { display: grid; place-items: center; width: 48px; height: 48px; border: 4px solid rgb(255 255 255 / 76%); border-radius: 50%; color: #fff; font-size: 22px; }
+.meituan-entry__store-cover span { position: absolute; top: 7px; left: 7px; padding: 3px 6px; border-radius: 6px; color: #171713; background: #ffd100; font-size: 9px; font-weight: 900; }
+.meituan-entry__store h3 { margin: 3px 0 7px; font-size: 17px; }
+.meituan-entry__store p { margin: 0 0 11px; color: #777269; font-size: 11px; }
+.meituan-entry__store > div:last-child > div b { color: #e54729; font-size: 14px; }
+.meituan-entry__store > div:last-child > div span { color: #777269; font-size: 10px; }
+.meituan-entry__store small { display: inline-block; margin-top: 8px; padding: 4px 7px; border-radius: 7px; color: #6a5100; background: #fff3bd; font-size: 10px; font-weight: 800; }

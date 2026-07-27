@@ -1,0 +1,24 @@
+:root {
+  color-scheme: light;
+  --color-brand: #ffd100;
+  --color-brand-strong: #ffc400;
+  --color-ink: #22211f;
+  --color-ink-soft: #68645c;
+  --color-paper: #f7f6f2;
+  --color-surface: #ffffff;
+  --color-line: #e8e5dd;
+  --color-verified: #12805c;
+  --color-verified-soft: #eaf7f1;
+  --color-uncertain: #9b6a08;
+  --color-uncertain-soft: #fff6d8;
+  --color-risk: #c24d3c;
+  --color-risk-soft: #fff0ed;
+  --color-danger: #c33e3e;
+  --shadow-card: 0 8px 24px rgb(34 33 31 / 7%);
+  --shadow-float: 0 18px 50px rgb(27 29 33 / 16%);
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --font-display: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  --font-body: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
